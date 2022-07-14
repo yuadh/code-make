@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>滚动入场动画</h1>
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box">5</div>
+    <div class="box">6</div>
+    <div class="box">7</div>
+    <div class="box">8</div>
+    <script>
+      const boxes = document.querySelectorAll('.box')
+      boxes.forEach((box, index) => {
+        box.style.backgroundImage = `url(./images/img${++index}.jpg)`
+      })
+      window.addEventListener('scroll', checkBoxes)
+      checkBoxes()
+      function checkBoxes() {
+        const triggleBottom = (window.innerHeight / 5) * 4 //指定一个允许显示的视口区域
+        boxes.forEach((box) => {
+          const boxTop = box.getBoundingClientRect().top //获取该元素的top值
+          if (boxTop < triggleBottom) {
+            box.classList.add('show')
+          } else {
+            box.classList.remove('show')
+          }
+        })
+      }
+    </script>
+  </body>
+</html>

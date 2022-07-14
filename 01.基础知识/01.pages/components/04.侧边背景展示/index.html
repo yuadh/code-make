@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-slide">
+        <div style="background-color: rgb(142, 194, 234)">
+          <h1>你的名字</h1>
+          <p>picture oth 1</p>
+        </div>
+        <div style="background-color: rgb(224, 104, 190)">
+          <h1>未知原画</h1>
+          <p>picture oth 2</p>
+        </div>
+        <div style="background-color: rgb(22, 111, 206)">
+          <h1>敢达</h1>
+          <p>picture oth 3</p>
+        </div>
+        <div style="background-color: rgb(22, 9, 9)">
+          <h1>游戏CG</h1>
+          <p>picture oth 4</p>
+        </div>
+      </div>
+      <div class="right-slide">
+        <div class="bgd"></div>
+        <div class="bgd"></div>
+        <div class="bgd"></div>
+        <div class="bgd"></div>
+      </div>
+      <div class="buttons">
+        <button class="up-button">
+          <span>U</span>
+        </button>
+        <button class="down-button">
+          <span>D</span>
+        </button>
+      </div>
+    </div>
+    <script>
+      const container = document.querySelector('.container')
+      const leftSlide = document.querySelector('.left-slide')
+      const rightSlide = document.querySelector('.right-slide')
+      const uBtn = document.querySelector('.up-button')
+      const dBtn = document.querySelector('.down-button')
+      const slides = document.querySelectorAll('.bgd')
+      const slidesLength = slides.length
+      console.log(slides)
+      slides.forEach((item, index) => {
+        item.style.backgroundImage = `url(./images/img${++index}.jpg)`
+      })
+      let activeIndex = 0
+      leftSlide.style.top = `-${(slidesLength - 1) * 100}vh`
+      uBtn.addEventListener('click', () => {
+        changeSlide('up')
+      })
+      dBtn.addEventListener('click', () => {
+        changeSlide('down')
+      })
+      const changeSlide = (move) => {
+        const wLength = container.clientHeight
+        if (move === 'down') {
+          activeIndex++
+          if (activeIndex > slidesLength - 1) {
+            activeIndex = 0
+          }
+        } else if (move === 'up') {
+          activeIndex--
+          if (activeIndex < 0) {
+            activeIndex = slidesLength - 1
+          }
+        }
+        rightSlide.style.transform = `translateY(-${activeIndex * wLength}px)`
+        leftSlide.style.transform = `translateY(${activeIndex * wLength}px)`
+      }
+    </script>
+  </body>
+</html>
