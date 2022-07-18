@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="magic">Magic 🎩</div>
+      <div class="boxes big"></div>
+    </div>
+    <script>
+      const boxesContainer = document.querySelector('.boxes')
+      const btn = document.querySelector('.magic')
+      btn.addEventListener('click', () => {
+        boxesContainer.classList.toggle('big')
+      })
+      createBoxes()
+      function createBoxes() {
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 4; j++) {
+            const box = document.createElement('div')
+            box.classList.add('box')
+            box.style.backgroundPosition = `${-j * 125}px ${-i * 125}px`
+            boxesContainer.append(box)
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
