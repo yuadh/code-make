@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./iindex.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <div class="container"> -->
+    <h1 class="text">Loading</h1>
+    <div class="btn">
+      <label for="speed">Speed:</label>
+      <input
+        type="number"
+        name="speed"
+        value="1"
+        min="1"
+        max="10"
+        step="1"
+        id="speed"
+      />
+    </div>
+    <!-- </div> -->
+    <script>
+      const text = document.querySelector('.text')
+      const speedBtn = document.getElementById('speed')
+      const showText = 'Take is sheap, Show me the code'
+      let idx = 1
+      let speed = 300 / speedBtn.value
+      let tend = true
+      play()
+      function play() {
+        text.innerHTML = showText.slice(0, idx)
+        if (idx < showText.length && tend) {
+          idx++
+        } else if (idx > 1 && !tend) {
+          idx--
+        }
+        if (idx === showText.length) {
+          tend = false
+        } else if (idx === 1) {
+          tend = true
+        }
+        setTimeout(play, speed)
+      }
+      addEventListener('input', (e) => (speed = 300 / e.target.value))
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="msg"></div>
+    <button class="btn">消息提示</button>
+    <script>
+      const msg = document.querySelector('.msg')
+      const btn = document.querySelector('.btn')
+      const msgList = ['消息提示 1', '消息提示 2', '消息提示 3', '消息提示 4']
+      const types = ['info', 'success', 'error']
+      createMsg('提示框测试', 'info')
+      btn.addEventListener('click', () => {
+        createMsg()
+      })
+      function createMsg(content = null, type = null) {
+        const note = document.createElement('div')
+        note.classList.add('toast')
+        note.classList.add(type ? type : getRandomTypes())
+        note.innerText = content ? content : getRandomMessage()
+        msg.appendChild(note)
+
+        setTimeout(() => {
+          note.remove()
+        }, 3000)
+      }
+      function getRandomMessage() {
+        return msgList[Math.floor(Math.random() * msgList.length)]
+      }
+      function getRandomTypes() {
+        return types[Math.floor(Math.random() * types.length)]
+      }
+    </script>
+  </body>
+</html>
